@@ -119,7 +119,7 @@ jobs:
         run: ls -al ${{ github.workspace }}/main/packages
 
       - name: Verify packages Path
-        run: ls -al ${{ github.workspace }}/theos
+        run: ls -al ${{ github.workspace }}/main/.theos
 
       - name: Inject tweak into provided IPA
         run: |
@@ -135,7 +135,7 @@ jobs:
           mv BHTwitter.ipa BHTwitter.zip
           unzip BHTwitter.zip
           cd Payload/Twitter.app
-          cp -rf ${{ github.workspace }}/main/FuckElon/patches/* /
+          cp -rf ${{ github.workspace }}/main/FuckElon/patches/* ./
           cd ../..
           zip -r BHTwitter.ipa Payload
           rm -rf Payload    
