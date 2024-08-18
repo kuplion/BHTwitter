@@ -119,7 +119,7 @@ jobs:
         run: ls -al ${{ github.workspace }}/main/packages
 
       - name: Verify packages Path
-        run: ls -al ${{ github.workspace }}/main/theos
+        run: ls -al ${{ github.workspace }}/theos
 
       - name: Inject tweak into provided IPA
         run: |
