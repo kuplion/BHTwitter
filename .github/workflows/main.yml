@@ -99,8 +99,7 @@ jobs:
         id: build_package
         run: |
           cd ${{ github.workspace }}/main
-          make clean
-          make SIDELOADED=1
+          make clean package SIDELOADED=1
         env:
           THEOS: ${{ github.workspace }}/theos
 
@@ -109,7 +108,7 @@ jobs:
         run: |
           cd ${{ github.workspace }}/main/
           temp_dir=$(mktemp -d)
-          curl -L -o "$temp_dir/libcephei.zip" "https://cdn.discordapp.com/attachments/755439561454256132/1184388888475738243/libcephei.zip?ex=658bcb1b&is=6579561b&hm=24bf1a932b1a91dda5826435bddef3114febc54c11c8e6a995c800d7db644e67&"
+          curl -L -o "$temp_dir/libcephei.zip" "https://github.com/hbang/libcephei/releases/download/2.0/cephei_sdk_2.0.zip"
           unzip -o "$temp_dir/libcephei.zip" -d $PWD/packages
           rm -rf "$temp_dir"
           rm -rf $PWD/packages/__MACOSX
@@ -119,16 +118,13 @@ jobs:
       - name: Verify packages Path
         run: ls -al ${{ github.workspace }}/main/packages
 
-      - name: Verify dylib Path
-        run: ls -al ${{ github.workspace }}/theos
-
       - name: Inject tweak into provided IPA
         run: |
           brew install coreutils
           cd ${{ github.workspace }}/main/packages
           tweakName=$(ls)
           cd ${{ github.workspace }}/main/
-          ./Azule/azule -i "$PWD/Twitter.ipa" -o "$PWD/packages/BHTwitter.ipa" -r -f "$PWD/theos/obj/debug/keychainfix.dylib" "$PWD/theos/obj/debug/libbhFLEX.dylib" "$PWD/theos/obj/debug/BHTwitter.dylib" "$PWD/packages/Cephei.framework" "$PWD/packages/CepheiUI.framework" "$PWD/packages/CepheiPrefs.framework" "$PWD/layout/Library/Application Support/BHT/BHTwitter.bundle"
+          ./Azule/azule -i "$PWD/Twitter.ipa" -o "$PWD/packages/BHTwitter.ipa" -r -f "$PWD/packages/keychainfix.dylib" "$PWD/packages/libbhFLEX.dylib" "$PWD/packages/BHTwitter.dylib" "$PWD/packages/Cephei.framework" "$PWD/packages/CepheiUI.framework" "$PWD/packages/CepheiPrefs.framework" "$PWD/layout/Library/Application Support/BHT/BHTwitter.bundle"
 
       - name: Inject FuckElon Patches
         run: |
