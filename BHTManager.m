@@ -184,9 +184,6 @@
 + (BOOL)Padlock {
     return [[NSUserDefaults standardUserDefaults] boolForKey:@"padlock"];
 }
-+ (BOOL)OldStyle {
-    return [[NSUserDefaults standardUserDefaults] boolForKey:@"old_style"];
-}
 + (BOOL)changeFont {
     return [[NSUserDefaults standardUserDefaults] boolForKey:@"en_font"];
 }
