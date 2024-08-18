@@ -104,6 +104,18 @@ jobs:
         env:
           THEOS: ${{ github.workspace }}/theos
 
+      - name: Download libcephei SDK
+        id: download_packages
+        run: |
+          cd ${{ github.workspace }}/main/
+          temp_dir=$(mktemp -d)
+          curl -L -o "$temp_dir/libcephei.zip" "https://cdn.discordapp.com/attachments/755439561454256132/1184388888475738243/libcephei.zip?ex=658bcb1b&is=6579561b&hm=24bf1a932b1a91dda5826435bddef3114febc54c11c8e6a995c800d7db644e67&"
+          unzip -o "$temp_dir/libcephei.zip" -d $PWD/packages
+          rm -rf "$temp_dir"
+          rm -rf $PWD/packages/__MACOSX
+        env:
+          THEOS: ${{ github.workspace }}/theos
+
       - name: Verify packages Path
         run: ls -al ${{ github.workspace }}/main/packages
 
