@@ -99,15 +99,16 @@ jobs:
         id: build_package
         run: |
           cd ${{ github.workspace }}/main
-          make clean package SIDELOADING=1
+          make clean
+          make SIDELOADED=1
         env:
           THEOS: ${{ github.workspace }}/theos
 
-      - name: Verify keychainfix.dylib Path
-        run: ls -al ${{ github.workspace }}/main/theos/obj/debug/
-
-      - name: Verify keychainfix.dylib Path
+      - name: Verify packages Path
         run: ls -al ${{ github.workspace }}/main/packages/
+
+      - name: Verify dylib Path
+        run: ls -al ${{ github.workspace }}/main/theos/obj/debug/
 
       - name: Inject tweak into provided IPA
         run: |
