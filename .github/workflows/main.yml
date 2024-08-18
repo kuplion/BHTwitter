@@ -118,6 +118,9 @@ jobs:
       - name: Verify packages Path
         run: ls -al ${{ github.workspace }}/main/packages
 
+      - name: Verify packages Path
+        run: ls -al ${{ github.workspace }}/main/theos
+
       - name: Inject tweak into provided IPA
         run: |
           brew install coreutils
