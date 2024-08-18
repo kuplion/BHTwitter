@@ -20,7 +20,6 @@ jobs:
 
       - name: Update submodules
         run: |
-          git submodule add https://github.com/ghl3m0n/FuckElon.git
           git submodule update --init --recursive --remote
           git add .
           git commit -m "updated submodules"
