@@ -33,7 +33,6 @@
 + (BOOL)HideTopics;
 + (BOOL)DisableVODCaptions;
 + (BOOL)Padlock;
-+ (BOOL)OldStyle;
 + (BOOL)changeFont;
 + (BOOL)FLEX;
 + (BOOL)autoHighestLoad;
