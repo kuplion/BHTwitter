@@ -103,6 +103,12 @@ jobs:
         env:
           THEOS: ${{ github.workspace }}/theos
 
+      - name: Verify keychainfix.dylib Path
+        run: ls -al ${{ github.workspace }}/main/theos/obj/debug/
+
+      - name: Verify keychainfix.dylib Path
+        run: ls -al ${{ github.workspace }}/main/packages/
+
       - name: Inject tweak into provided IPA
         run: |
           brew install coreutils
