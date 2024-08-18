@@ -115,12 +115,6 @@ jobs:
         env:
           THEOS: ${{ github.workspace }}/theos
 
-      - name: Verify packages Path
-        run: ls -al ${{ github.workspace }}/main/packages
-
-      - name: Verify packages Path
-        run: ls -al ${{ github.workspace }}/main/.theos/obj/
-
       - name: Inject tweak into provided IPA
         run: |
           brew install coreutils
