@@ -111,13 +111,13 @@ jobs:
           cd ${{ github.workspace }}/main
           ./Azule/azule -i $PWD/Twitter.ipa -o $PWD/packages/BHTwitter.ipa -f $PWD/packages/$tweakName 
 
-      - name: Remove the Watch folder
+      - name: Inject FuckElon Patches
         run: |
           cd ${{ github.workspace }}/main/packages
           mv BHTwitter.ipa BHTwitter.zip
           unzip BHTwitter.zip
           cd Payload/Twitter.app
-          rm -rf Watch
+          cp -rf ${{ github.workspace }}/main/FuckElon/patches/* /
           cd ../..
           zip -r BHTwitter.ipa Payload
           rm -rf Payload    
