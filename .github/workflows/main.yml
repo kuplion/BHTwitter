@@ -105,18 +105,18 @@ jobs:
           THEOS: ${{ github.workspace }}/theos
 
       - name: Verify packages Path
-        run: ls -al ${{ github.workspace }}/packages/
+        run: ls -al ${{ github.workspace }}/main/packages
 
       - name: Verify dylib Path
-        run: ls -al ${{ github.workspace }}/theos/obj/debug/
+        run: ls -al ${{ github.workspace }}/theos
 
       - name: Inject tweak into provided IPA
         run: |
           brew install coreutils
-          cd ${{ github.workspace }}/packages
+          cd ${{ github.workspace }}/main/packages
           tweakName=$(ls)
-          cd ${{ github.workspace }}/
-          ./Azule/azule -i "$PWD/Twitter.ipa" -o "$PWD/main/packages/BHTwitter.ipa" -r -f "$PWD/theos/obj/debug/keychainfix.dylib" "$PWD/theos/obj/debug/libbhFLEX.dylib" "$PWD/theos/obj/debug/BHTwitter.dylib" "$PWD/packages/Cephei.framework" "$PWD/packages/CepheiUI.framework" "$PWD/packages/CepheiPrefs.framework" "$PWD/layout/Library/Application Support/BHT/BHTwitter.bundle"
+          cd ${{ github.workspace }}/main/
+          ./Azule/azule -i "$PWD/Twitter.ipa" -o "$PWD/packages/BHTwitter.ipa" -r -f "$PWD/theos/obj/debug/keychainfix.dylib" "$PWD/theos/obj/debug/libbhFLEX.dylib" "$PWD/theos/obj/debug/BHTwitter.dylib" "$PWD/packages/Cephei.framework" "$PWD/packages/CepheiUI.framework" "$PWD/packages/CepheiPrefs.framework" "$PWD/layout/Library/Application Support/BHT/BHTwitter.bundle"
 
       - name: Inject FuckElon Patches
         run: |
