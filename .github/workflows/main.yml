@@ -119,16 +119,16 @@ jobs:
           cd ${{ github.workspace }}/main
           ./Azule/azule -i "$PWD/Twitter.ipa" -o "$PWD/packages/BHTwitter.ipa" -r -f "$PWD/packages/com.bandarhl.bhtwitter_4.3-1+debug_iphoneos-arm.deb" "$PWD/packages/ws.hbang.common_2.0_iphoneos-arm64.deb" "$PWD/layout/Library/Application Support/BHT/BHTwitter.bundle"
 
-      - name: Inject FuckElon Patches
-        run: |
-          cd ${{ github.workspace }}/main/packages
-          mv BHTwitter.ipa BHTwitter.zip
-          unzip BHTwitter.zip
-          cd Payload/Twitter.app
-          cp -rf ${{ github.workspace }}/main/FuckElon/patches/* ./
-          cd ../..
-          zip -r BHTwitter.ipa Payload
-          rm -rf Payload 
+      #- name: Inject FuckElon Patches
+      #  run: |
+      #    cd ${{ github.workspace }}/main/packages
+      #    mv BHTwitter.ipa BHTwitter.zip
+      #    unzip BHTwitter.zip
+      #    cd Payload/Twitter.app
+      #    cp -rf ${{ github.workspace }}/main/FuckElon/patches/* ./
+      #    cd ../..
+      #    zip -r BHTwitter.ipa Payload
+      #    rm -rf Payload 
 
       - name: Create Release
         id: create_release
