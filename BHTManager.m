@@ -223,6 +223,12 @@
 + (BOOL)hideViewCount {
     return [[NSUserDefaults standardUserDefaults] boolForKey:@"hide_view_count"];
 }
++ (BOOL)hidePremiumOffer {
+    return [[NSUserDefaults standardUserDefaults] boolForKey:@"hide_premium_offer"];
+}
++ (BOOL)hideTrendVideos {
+    return [[NSUserDefaults standardUserDefaults] boolForKey:@"hide_trend_videos"];
+}
 + (BOOL)forceTweetFullFrame {
     return [[NSUserDefaults standardUserDefaults] boolForKey:@"force_tweet_full_frame"];
 }

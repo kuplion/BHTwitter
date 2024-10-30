@@ -46,6 +46,8 @@
 + (BOOL)hideWhoToFollow;
 + (BOOL)hideTopicsToFollow;
 + (BOOL)hideViewCount;
++ (BOOL)hidePremiumOffer;
++ (BOOL)hideTrendVideos;
 + (BOOL)forceTweetFullFrame;
 + (BOOL)stripTrackingParams;
 + (BOOL)alwaysFollowingPage;
