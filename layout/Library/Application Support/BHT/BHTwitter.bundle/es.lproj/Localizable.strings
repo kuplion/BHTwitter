@@ -50,6 +50,12 @@
 "HIDE_TOPICS_TO_FOLLOW_OPTION" = "Ocultar Temas a seguir";
 "HIDE_TOPICS_TO_FOLLOW_OPTION_DETAIL_TITLE" = "Ocultar la sección Temas a seguir en Perfiles";
 
+"HIDE_PREMIUM_OFFER_OPTION" = "Ocultar la oferta de registro Premium";
+"HIDE_PREMIUM_OFFER_OPTION_DETAIL_TITLE" = "Ocultar los botones Obtener verificación y Actualizar a nivel superior en el perfil y en la barra de navegación";
+
+"HIDE_TREND_VIDEOS_OPTION_TITLE" = "Ocultar los vídeos que son tendencia";
+"HIDE_TREND_VIDEOS_OPTION_DETAIL_TITLE" = "Ocultar los vídeos que son tendencia en la pestaña de búsqueda";
+
 "DISABLE_VIDEO_LAYER_CAPTIONS_OPTION_TITLE" = "Desactivar subtítulos";
 
 "VOICE_OPTION_TITLE" = "Función de voz";
@@ -128,6 +134,7 @@
 "CUSTOM_TAB_BAR_OPTION_4" = "Comunidades";
 "CUSTOM_TAB_BAR_OPTION_5" = "Notificaciones";
 "CUSTOM_TAB_BAR_OPTION_6" = "Mensajes";
+"CUSTOM_TAB_BAR_OPTION_7" = "Grok";
 
 "TWITTER_BLUE_SECTION_FOOTER_TITLE" = "Es posible que deba reiniciar la aplicación de Twitter para aplicar los cambios";
 

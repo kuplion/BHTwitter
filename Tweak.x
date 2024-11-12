@@ -257,6 +257,11 @@ static void batchSwizzlingOnClass(Class cls, NSArray<NSString*>*origSelectors, I
 }
 %end
 
+%hook T1ProfileSummaryView
+- (BOOL)shouldShowGetVerifiedButton {
+    return [BHTManager hidePremiumOffer] ? false : %orig;
+}
+%end
 
 // MARK: hide ADs
 // credit goes to haoict https://github.com/haoict/twitter-no-ads
@@ -273,7 +278,7 @@ static void batchSwizzlingOnClass(Class cls, NSArray<NSString*>*origSelectors, I
     
     if ([self.adDisplayLocation isEqualToString:@"PROFILE_TWEETS"]) {
         if ([BHTManager hideWhoToFollow]) {
-            if ([class_name isEqualToString:@"T1URTTimelineUserItemViewModel"] || [class_name isEqualToString:@"TwitterURT.URTModuleHeaderViewModel"] || [class_name isEqualToString:@"TwitterURT.URTModuleFooterViewModel"]) {
+            if ([class_name isEqualToString:@"T1URTTimelineUserItemViewModel"] || [class_name isEqualToString:@"T1TwitterSwift.URTTimelineCarouselViewModel"] || [class_name isEqualToString:@"TwitterURT.URTModuleHeaderViewModel"] || [class_name isEqualToString:@"TwitterURT.URTModuleFooterViewModel"]) {
                 [_orig setHidden:true];
             }
         }
@@ -302,6 +307,9 @@ static void batchSwizzlingOnClass(Class cls, NSArray<NSString*>*origSelectors, I
                 [_orig setHidden:true];
             }
         }
+        if ([BHTManager hideTrendVideos] && ([class_name isEqualToString:@"TwitterURT.URTModuleHeaderViewModel"] || [class_name isEqualToString:@"TwitterURT.URTModuleFooterViewModel"] || [class_name isEqualToString:@"T1TwitterSwift.URTTimelineCarouselViewModel"])) {
+            [_orig setHidden:true];
+        }
     }
     
     if ([self.adDisplayLocation isEqualToString:@"TIMELINE_HOME"]) {
@@ -319,6 +327,12 @@ static void batchSwizzlingOnClass(Class cls, NSArray<NSString*>*origSelectors, I
                 [_orig setHidden:true];
             }
         }
+
+        if ([BHTManager hidePremiumOffer]) {
+            if ([class_name isEqualToString:@"T1URTTimelineMessageItemViewModel"]) {
+                [_orig setHidden:true];
+            }
+        }
     }
     
     return _orig;
@@ -333,7 +347,7 @@ static void batchSwizzlingOnClass(Class cls, NSArray<NSString*>*origSelectors, I
     
     if ([self.adDisplayLocation isEqualToString:@"PROFILE_TWEETS"]) {
         if ([BHTManager hideWhoToFollow]) {
-            if ([class_name isEqualToString:@"T1URTTimelineUserItemViewModel"] || [class_name isEqualToString:@"TwitterURT.URTModuleHeaderViewModel"] || [class_name isEqualToString:@"TwitterURT.URTModuleFooterViewModel"]) {
+            if ([class_name isEqualToString:@"T1URTTimelineUserItemViewModel"] || [class_name isEqualToString:@"T1TwitterSwift.URTTimelineCarouselViewModel"] || [class_name isEqualToString:@"TwitterURT.URTModuleHeaderViewModel"] || [class_name isEqualToString:@"TwitterURT.URTModuleFooterViewModel"]) {
                 return 0;
             }
         }
@@ -361,6 +375,10 @@ static void batchSwizzlingOnClass(Class cls, NSArray<NSString*>*origSelectors, I
                 return 0;
             }
         }
+
+        if ([BHTManager hideTrendVideos] && ([class_name isEqualToString:@"TwitterURT.URTModuleHeaderViewModel"] || [class_name isEqualToString:@"TwitterURT.URTModuleFooterViewModel"] || [class_name isEqualToString:@"T1TwitterSwift.URTTimelineCarouselViewModel"])) {
+            return 0;
+        }
     }
     
     if ([self.adDisplayLocation isEqualToString:@"TIMELINE_HOME"]) {
@@ -376,6 +394,12 @@ static void batchSwizzlingOnClass(Class cls, NSArray<NSString*>*origSelectors, I
         
         if ([BHTManager HideTopics]) {
             if ([tweet isKindOfClass:%c(_TtC10TwitterURT26URTTimelinePromptViewModel)]) {
+                return 0;
+            }
+        }
+
+        if ([BHTManager hidePremiumOffer]) {
+            if ([class_name isEqualToString:@"T1URTTimelineMessageItemViewModel"]) {
                 return 0;
             }
         }
@@ -854,6 +878,21 @@ static void batchSwizzlingOnClass(Class cls, NSArray<NSString*>*origSelectors, I
 }
 %end
 
+%hook THFHomeTimelineContainerViewController
+- (void)_t1_showPremiumUpsellIfNeeded {
+    if ([BHTManager hidePremiumOffer]) {
+        return;
+    }
+    return %orig;
+}
+- (void)_t1_showPremiumUpsellIfNeededWithScribing:(BOOL)arg1 {
+    if ([BHTManager hidePremiumOffer]) {
+        return;
+    }
+    return %orig;
+}
+%end
+
 %hook TFNTwitterMediaUploadConfiguration
 - (_Bool)photoUploadHighQualityImagesSettingIsVisible {
     return [BHTManager autoHighestLoad] ? true : %orig;
@@ -1275,7 +1314,7 @@ static void batchSwizzlingOnClass(Class cls, NSArray<NSString*>*origSelectors, I
                             [safeParams addObject:item];
                         }
                     }
-                    cleanedURL.queryItems = safeParams;
+                    cleanedURL.queryItems = safeParams.count > 0 ? safeParams : nil;
 
                     if ([[NSUserDefaults standardUserDefaults] objectForKey:@"tweet_url_host"]) {
                         NSString *selectedHost = [[NSUserDefaults standardUserDefaults] objectForKey:@"tweet_url_host"];

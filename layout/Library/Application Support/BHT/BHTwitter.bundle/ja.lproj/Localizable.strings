@@ -50,6 +50,12 @@
 "HIDE_TOPICS_TO_FOLLOW_OPTION" = "トピックをフォローするを消す";
 "HIDE_TOPICS_TO_FOLLOW_OPTION_DETAIL_TITLE" = "プロフィールの「トピックをフォローする」を削除します。";
 
+"HIDE_PREMIUM_OFFER_OPTION" = "プレミアムの登録オファーを消す";
+"HIDE_PREMIUM_OFFER_OPTION_DETAIL_TITLE" = "プロフィールとナビゲーションバーの「認証される」「アップグレード」ボタンを削除します。";
+
+"HIDE_TREND_VIDEOS_OPTION_TITLE" = "トレンドの動画を消す";
+"HIDE_TREND_VIDEOS_OPTION_DETAIL_TITLE" = "検索タブからトレンドの動画を削除します。";
+
 "DISABLE_VIDEO_LAYER_CAPTIONS_OPTION_TITLE" = "動画の字幕を無効にする";
 
 "VOICE_OPTION_TITLE" = "音声機能の有効化";
@@ -128,6 +134,7 @@
 "CUSTOM_TAB_BAR_OPTION_4" = "コミュニティ";
 "CUSTOM_TAB_BAR_OPTION_5" = "通知";
 "CUSTOM_TAB_BAR_OPTION_6" = "メッセージ";
+"CUSTOM_TAB_BAR_OPTION_7" = "Grok";
 
 "TWITTER_BLUE_SECTION_FOOTER_TITLE" = "変更を適用させるにはアプリを再起動する必要があります。";
 
